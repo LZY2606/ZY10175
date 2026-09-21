@@ -1,0 +1,155 @@
+{
+  "packageId": "wws-welding-pqr",
+  "formatVersion": 1,
+  "description": "焊程见证台内置焊接工艺评定规则包。区间扩展以受限算术表达式声明：闭区间厚度、半开热输入范围、直径下限覆盖；jointGroups 中的变量只能由同一试件联合证明；stitching=forbidden 时禁止跨试件拼接。",
+  "unitRegistry": {
+    "thickness": { "unit": "mm", "display": "厚度 (mm)" },
+    "heatInput": { "unit": "kJ/mm", "display": "热输入 (kJ/mm)" },
+    "diameter": { "unit": "mm", "display": "外径 (mm)" }
+  },
+  "versions": [
+    {
+      "packageId": "wws-welding-pqr",
+      "version": "2024.1",
+      "label": "2024 版（单一联合组，禁止拼接）",
+      "publishedAt": "2024-03-01",
+      "requiredVariables": ["baseMaterial", "filler", "thickness", "diameter", "position", "heatInput"],
+      "variables": {
+        "baseMaterial": {
+          "kind": "categorical",
+          "values": ["Fe-1", "Fe-3", "Fe-8"],
+          "match": "exact"
+        },
+        "filler": {
+          "kind": "categorical",
+          "values": ["F-1", "F-3", "F-8"],
+          "match": "exact"
+        },
+        "position": {
+          "kind": "categorical",
+          "values": ["PA", "PB", "PC", "PF", "PE"],
+          "match": "exact"
+        },
+        "thickness": {
+          "kind": "interval",
+          "unit": "mm",
+          "productionValue": "nominal",
+          "couponValue": "nominal",
+          "lower": { "expr": "0.5 * v", "bound": "closed" },
+          "upper": { "expr": "2 * v", "bound": "closed" }
+        },
+        "heatInput": {
+          "kind": "interval",
+          "unit": "kJ/mm",
+          "productionValue": "nominal",
+          "couponValue": "measured",
+          "lower": { "expr": "0.5 * v", "bound": "closed" },
+          "upper": { "expr": "v", "bound": "closed" }
+        },
+        "diameter": {
+          "kind": "interval",
+          "unit": "mm",
+          "productionValue": "nominal",
+          "couponValue": "nominal",
+          "lower": { "expr": "0.5 * v", "bound": "closed" },
+          "upper": null
+        }
+      },
+      "requiredMechanical": ["tensile", "bend"],
+      "jointGroups": [
+        {
+          "id": "joint-all",
+          "label": "全部工艺变量联合组",
+          "variables": ["baseMaterial", "filler", "thickness", "diameter", "position", "heatInput"]
+        }
+      ],
+      "stitching": "forbidden",
+      "recordPolicy": {
+        "validStatuses": ["valid"],
+        "expiredStatuses": ["expired"],
+        "withdrawnStatuses": ["withdrawn"],
+        "requireKnownUnit": true
+      },
+      "changelog": [
+        "初版：全部变量必须由同一试件联合证明，禁止跨试件拼接",
+        "厚度闭区间 [0.5t, 2t]",
+        "热输入闭区间 [0.5Q, Q]，取试件实测值",
+        "直径下限覆盖 [0.5D, +∞)"
+      ]
+    },
+    {
+      "packageId": "wws-welding-pqr",
+      "version": "2025.0",
+      "label": "2025 版（拆分联合组，允许按组拼接）",
+      "publishedAt": "2025-06-01",
+      "requiredVariables": ["baseMaterial", "filler", "thickness", "diameter", "position", "heatInput"],
+      "variables": {
+        "baseMaterial": {
+          "kind": "categorical",
+          "values": ["Fe-1", "Fe-3", "Fe-8"],
+          "match": "exact"
+        },
+        "filler": {
+          "kind": "categorical",
+          "values": ["F-1", "F-3", "F-8"],
+          "match": "exact"
+        },
+        "position": {
+          "kind": "categorical",
+          "values": ["PA", "PB", "PC", "PF", "PE"],
+          "match": "exact"
+        },
+        "thickness": {
+          "kind": "interval",
+          "unit": "mm",
+          "productionValue": "nominal",
+          "couponValue": "nominal",
+          "lower": { "expr": "0.7 * v", "bound": "closed" },
+          "upper": { "expr": "1.5 * v", "bound": "closed" }
+        },
+        "heatInput": {
+          "kind": "interval",
+          "unit": "kJ/mm",
+          "productionValue": "nominal",
+          "couponValue": "measured",
+          "lower": { "expr": "0.5 * v", "bound": "closed" },
+          "upper": { "expr": "1.2 * v", "bound": "open" }
+        },
+        "diameter": {
+          "kind": "interval",
+          "unit": "mm",
+          "productionValue": "nominal",
+          "couponValue": "nominal",
+          "lower": { "expr": "0.5 * v", "bound": "closed" },
+          "upper": null
+        }
+      },
+      "requiredMechanical": ["tensile", "bend", "impact"],
+      "jointGroups": [
+        {
+          "id": "joint-core",
+          "label": "母材-填充-厚度联合组",
+          "variables": ["baseMaterial", "filler", "thickness"]
+        },
+        {
+          "id": "joint-heat",
+          "label": "直径-位置-热输入联合组",
+          "variables": ["diameter", "position", "heatInput"]
+        }
+      ],
+      "stitching": "permitted",
+      "recordPolicy": {
+        "validStatuses": ["valid"],
+        "expiredStatuses": ["expired"],
+        "withdrawnStatuses": ["withdrawn"],
+        "requireKnownUnit": true
+      },
+      "changelog": [
+        "联合组拆为 core / heat 两组，允许两组证据来自不同试件（stitching=permitted）",
+        "厚度区间收窄为 [0.7t, 1.5t]（闭区间）",
+        "热输入扩展为半开范围 [0.5Q, 1.2Q)，上界恰好 1.2Q 判不合格",
+        "力学检验新增冲击 (impact) 必检项"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,141 @@
+{
+  "description": "固定试件资格记录 fixture。标称值(nominal)与实测值(measured)分开存储；数值变量必须显式携带与规则一致的单位。PQR-A-007 与 PQR-B-013 各自只满足一个联合组，用于拼接验收。",
+  "coupons": [
+    {
+      "code": "PQR-A-007",
+      "status": "valid",
+      "validFrom": "2025-01-15",
+      "validUntil": "2028-01-14",
+      "note": "core 联合组完整；位置为 PF，缺 PA 位置证据",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-1" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PF" },
+        { "variable": "thickness", "nominal": 10, "measured": 9.9, "unit": "mm" },
+        { "variable": "diameter", "nominal": 300, "measured": 300.2, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 1.0, "measured": 1.0, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2025-01-10" },
+        { "testType": "bend", "result": "pass", "testedAt": "2025-01-10" },
+        { "testType": "impact", "result": "pass", "value": 58, "unit": "J", "testedAt": "2025-01-10" }
+      ]
+    },
+    {
+      "code": "PQR-B-013",
+      "status": "valid",
+      "validFrom": "2025-02-20",
+      "validUntil": "2028-02-19",
+      "note": "heat 联合组完整；母材组为 Fe-3，缺 Fe-1 母材证据",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-3" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PA" },
+        { "variable": "thickness", "nominal": 14, "measured": 13.8, "unit": "mm" },
+        { "variable": "diameter", "nominal": 180, "measured": 179.6, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 0.9, "measured": 0.9, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2025-02-15" },
+        { "testType": "bend", "result": "pass", "testedAt": "2025-02-15" },
+        { "testType": "impact", "result": "pass", "value": 64, "unit": "J", "testedAt": "2025-02-15" }
+      ]
+    },
+    {
+      "code": "WPQR-001",
+      "status": "valid",
+      "validFrom": "2023-06-01",
+      "validUntil": "2026-05-31",
+      "note": "Fe-8 小口径完整记录（2024 版力学齐全；无冲击项）",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-8" },
+        { "variable": "filler", "text": "F-8" },
+        { "variable": "position", "text": "PE" },
+        { "variable": "thickness", "nominal": 6, "measured": 5.9, "unit": "mm" },
+        { "variable": "diameter", "nominal": 80, "measured": 79.8, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 0.5, "measured": 0.5, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2023-05-20" },
+        { "testType": "bend", "result": "pass", "testedAt": "2023-05-20" }
+      ]
+    },
+    {
+      "code": "WPQR-002",
+      "status": "expired",
+      "validFrom": "2019-03-01",
+      "validUntil": "2024-02-29",
+      "note": "已过期：参数再匹配也不得作为证据",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-1" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PA" },
+        { "variable": "thickness", "nominal": 10, "measured": 10.1, "unit": "mm" },
+        { "variable": "diameter", "nominal": 200, "measured": 200.1, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 1.0, "measured": 0.95, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2019-02-20" },
+        { "testType": "bend", "result": "pass", "testedAt": "2019-02-20" }
+      ]
+    },
+    {
+      "code": "WPQR-003",
+      "status": "withdrawn",
+      "validFrom": "2020-05-01",
+      "validUntil": "2025-04-30",
+      "note": "已撤销：不得参与覆盖",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-1" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PC" },
+        { "variable": "thickness", "nominal": 12, "measured": 11.9, "unit": "mm" },
+        { "variable": "diameter", "nominal": 220, "measured": 219.7, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 1.1, "measured": 1.05, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2020-04-20" },
+        { "testType": "bend", "result": "pass", "testedAt": "2020-04-20" }
+      ]
+    },
+    {
+      "code": "WPQR-004",
+      "status": "valid",
+      "validFrom": "2025-03-10",
+      "validUntil": "2028-03-09",
+      "note": "热输入实测记录单位缺失：整条记录按单位不明排除",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-1" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PA" },
+        { "variable": "thickness", "nominal": 10, "measured": 10.0, "unit": "mm" },
+        { "variable": "diameter", "nominal": 200, "measured": 200.0, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 1.0, "measured": 0.95, "unit": null }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2025-03-05" },
+        { "testType": "bend", "result": "pass", "testedAt": "2025-03-05" },
+        { "testType": "impact", "result": "pass", "value": 55, "unit": "J", "testedAt": "2025-03-05" }
+      ]
+    },
+    {
+      "code": "WPQR-006",
+      "status": "valid",
+      "validFrom": "2025-04-01",
+      "validUntil": "2028-03-31",
+      "note": "弯曲试验不合格：力学检验不完整，不得作为证据",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-3" },
+        { "variable": "filler", "text": "F-3" },
+        { "variable": "position", "text": "PB" },
+        { "variable": "thickness", "nominal": 8, "measured": 7.9, "unit": "mm" },
+        { "variable": "diameter", "nominal": 120, "measured": 119.8, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 0.7, "measured": 0.7, "unit": "kJ/mm" }
+      ],
+      "mechanical": [
+        { "testType": "tensile", "result": "pass", "testedAt": "2025-03-28" },
+        { "testType": "bend", "result": "fail", "testedAt": "2025-03-28" }
+      ]
+    }
+  ]
+}

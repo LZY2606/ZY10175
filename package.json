@@ -1,0 +1,21 @@
+{
+  "name": "welding-witness-stand",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "焊程见证台 - 焊接工艺资格覆盖核对本地服务",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "dev": "node --watch --watch-preserve-output src/server.ts",
+    "start": "node src/server.ts",
+    "test": "node scripts/run-tests.ts",
+    "typecheck": "tsc --noEmit",
+    "replay": "node scripts/replay.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

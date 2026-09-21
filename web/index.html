@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>焊程见证台</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <h1>焊程见证台</h1>
+      <div class="meta">
+        <span id="packageMeta" class="muted">规则包加载中…</span>
+      </div>
+      <nav class="tabs">
+        <button class="tab active" data-tab="check">覆盖核对</button>
+        <button class="tab" data-tab="compare">版本比较</button>
+        <button class="tab" data-tab="runs">运行记录</button>
+        <button class="tab" data-tab="data">证据台账</button>
+      </nav>
+    </header>
+
+    <main>
+      <section id="tab-check" class="panel active">
+        <div class="toolbar">
+          <label>规则版本
+            <select id="versionSelect"></select>
+          </label>
+          <label>载入固定工艺
+            <select id="specSelect"><option value="">— 自定义录入 —</option></select>
+          </label>
+          <button id="evaluateBtn" class="primary">核对覆盖</button>
+        </div>
+
+        <details class="editor" open>
+          <summary>生产工艺变量（区间变量按规则口径取标称值；实测值仅存档）</summary>
+          <div id="specEditor" class="grid"></div>
+        </details>
+
+        <div id="result" class="result" hidden>
+          <div class="conclusion-row">
+            <h2 id="conclusion" class="conclusion"></h2>
+            <div class="digest-line muted">
+              规则包摘要 <code id="pkgDigest"></code> ・版本摘要 <code id="versionDigest"></code>
+              ・拼接策略 <code id="stitchingMode"></code>
+            </div>
+          </div>
+
+          <h3>按生产变量的命中证据与缺口</h3>
+          <div id="variableList" class="variable-list"></div>
+
+          <h3>联合组判定</h3>
+          <div id="groupList" class="group-list"></div>
+
+          <div id="nearestBox"></div>
+          <div id="rejectionBox"></div>
+
+          <h3>区间覆盖图（Canvas）</h3>
+          <canvas id="rangeCanvas" width="960" height="320"></canvas>
+        </div>
+      </section>
+
+      <section id="tab-compare" class="panel">
+        <div class="toolbar">
+          <label>旧版 <select id="compareFrom"></select></label>
+          <span class="muted">→</span>
+          <label>新版 <select id="compareTo"></select></label>
+          <button id="compareBtn" class="primary">比较范围变化</button>
+          <span class="muted">样例试件值：厚度 10mm / 热输入 1 kJ/mm / 直径 200mm</span>
+        </div>
+        <div id="compareResult"></div>
+        <canvas id="compareCanvas" width="960" height="300"></canvas>
+      </section>
+
+      <section id="tab-runs" class="panel">
+        <div class="toolbar">
+          <button id="refreshRuns">刷新</button>
+          <button id="exportBtn">导出运行数据包 (JSON)</button>
+          <label class="file-btn">导入数据包复核
+            <input type="file" id="importFile" accept="application/json" hidden />
+          </label>
+          <button id="replayBtn" class="warn">清空并重放 fixture</button>
+          <span id="ioStatus" class="muted"></span>
+        </div>
+        <table class="data-table">
+          <thead>
+            <tr><th>#</th><th>时间</th><th>版本</th><th>工艺</th><th>结论</th><th>摘要</th><th></th></tr>
+          </thead>
+          <tbody id="runsBody"></tbody>
+        </table>
+        <pre id="runDetail" class="detail" hidden></pre>
+      </section>
+
+      <section id="tab-data" class="panel">
+        <div class="toolbar">
+          <button id="refreshData">刷新台账</button>
+          <span class="muted">过期 / 撤销 / 单位不明 / 力学不合格的记录会被标红，且不会参与覆盖。</span>
+        </div>
+        <h3>试件资格记录</h3>
+        <div id="couponList" class="card-list"></div>
+        <h3>固定生产工艺</h3>
+        <div id="specList" class="card-list"></div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

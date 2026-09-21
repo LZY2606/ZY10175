@@ -1,0 +1,27 @@
+{
+  "description": "固定待核生产工艺 fixture。生产侧区间变量按规则声明读取标称值，实测值仅存档。",
+  "specs": [
+    {
+      "name": "P1 拼接验收工艺",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-1" },
+        { "variable": "filler", "text": "F-1" },
+        { "variable": "position", "text": "PA" },
+        { "variable": "thickness", "nominal": 10, "measured": 10.2, "unit": "mm" },
+        { "variable": "diameter", "nominal": 160, "measured": 160.3, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 0.8, "measured": 0.82, "unit": "kJ/mm" }
+      ]
+    },
+    {
+      "name": "P3 Fe-8 小口径工艺",
+      "variables": [
+        { "variable": "baseMaterial", "text": "Fe-8" },
+        { "variable": "filler", "text": "F-8" },
+        { "variable": "position", "text": "PE" },
+        { "variable": "thickness", "nominal": 6, "measured": 6.1, "unit": "mm" },
+        { "variable": "diameter", "nominal": 80, "measured": 80.2, "unit": "mm" },
+        { "variable": "heatInput", "nominal": 0.45, "measured": 0.46, "unit": "kJ/mm" }
+      ]
+    }
+  ]
+}
