@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>焊程见证台</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>焊程见证台</h1>
+    <p class="sub">工艺资格覆盖与变量限值核查 · 结论固定规则包摘要</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>生产工艺</h2>
+      <div id="production-form" class="form-grid"></div>
+      <div class="toolbar">
+        <label>规则版本
+          <select id="rule-version"></select>
+        </label>
+        <label>对比版本
+          <select id="rule-version-b"><option value="">（不对比）</option></select>
+        </label>
+        <label>核查基准日
+          <input id="as-of" type="date" />
+        </label>
+        <button id="btn-check">核查覆盖</button>
+        <button id="btn-compare">对比两版规则</button>
+        <button id="btn-export">导出运行记录</button>
+        <button id="btn-reset" class="danger">清空并重导 fixture</button>
+      </div>
+    </section>
+
+    <section class="panel" id="conclusion-panel" hidden>
+      <h2>结论</h2>
+      <div id="conclusion"></div>
+    </section>
+
+    <section class="panel" id="variables-panel" hidden>
+      <h2>生产变量核查明细</h2>
+      <table id="variables-table">
+        <thead>
+          <tr><th>变量</th><th>生产值</th><th>状态</th><th>资格证据</th><th>缺口 / 最接近的试验</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="panel" id="groups-panel" hidden>
+      <h2>联合证明组</h2>
+      <div id="groups"></div>
+    </section>
+
+    <section class="panel" id="excluded-panel" hidden>
+      <h2>未参与判定的记录</h2>
+      <ul id="excluded"></ul>
+    </section>
+
+    <section class="panel" id="compare-panel" hidden>
+      <h2>规则版本对比</h2>
+      <table id="compare-table">
+        <thead><tr><th>变量</th><th id="cmp-ha"></th><th id="cmp-hb"></th><th>变化</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>合格区间图（Canvas）</h2>
+      <canvas id="chart" width="960" height="320"></canvas>
+      <p class="hint">横条为各有效试件的合格区间（端点空心=开区间，实心=闭区间），竖线为生产工艺目标值。</p>
+    </section>
+
+    <section class="panel">
+      <h2>运行记录</h2>
+      <table id="runs-table">
+        <thead><tr><th>#</th><th>时间</th><th>类型</th><th>规则版本</th><th>摘要</th><th>结论</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

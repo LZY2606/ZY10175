@@ -1,0 +1,48 @@
+{
+  "id": "wpqr-coverage-rules",
+  "version": "1.1.0",
+  "issuedAt": "2025-06-01",
+  "variables": [
+    { "key": "baseMetalGroup", "label": "母材组", "kind": "enum", "match": "exact", "required": true },
+    { "key": "fillerMaterial", "label": "填充材料", "kind": "enum", "match": "exact", "required": true },
+    {
+      "key": "thickness", "label": "厚度", "kind": "number", "unit": "mm", "measuredVar": "t", "required": true,
+      "extension": {
+        "cases": [
+          { "when": "t <= 38", "lower": "0.5 * t", "upper": "1.5 * t", "lowerBound": "closed", "upperBound": "open" },
+          { "when": "t > 38", "lower": "0.5 * t", "upper": "150", "lowerBound": "closed", "upperBound": "open" }
+        ]
+      }
+    },
+    {
+      "key": "diameter", "label": "直径", "kind": "number", "unit": "mm", "measuredVar": "d", "required": true,
+      "extension": {
+        "cases": [
+          { "lower": "0.5 * d", "upper": null, "lowerBound": "closed", "upperBound": "open" }
+        ]
+      }
+    },
+    {
+      "key": "heatInput", "label": "热输入", "kind": "number", "unit": "kJ/mm", "measuredVar": "h", "required": true,
+      "extension": {
+        "cases": [
+          { "when": "h <= 1.5", "lower": "0.8 * h", "upper": "1.2 * h", "lowerBound": "open", "upperBound": "closed" },
+          { "when": "h > 1.5", "lower": "0.85 * h", "upper": "1.05 * h", "lowerBound": "open", "upperBound": "open" }
+        ]
+      }
+    },
+    { "key": "position", "label": "焊接位置", "kind": "enum-set", "required": true },
+    { "key": "mechanicalTests", "label": "力学检验", "kind": "enum-set", "required": true }
+  ],
+  "jointGroups": [
+    {
+      "key": "thickness-heatInput",
+      "label": "厚度×热输入联合证明",
+      "variables": ["thickness", "heatInput"]
+    }
+  ],
+  "splice": {
+    "allowedVariables": ["position", "mechanicalTests"],
+    "note": "仅焊接位置与力学检验允许跨试件拼接证据；厚度与热输入必须由同一试件联合证明。v1.1.0 收紧厚度上限至 1.5t（开区间）并收紧热输入扩展。"
+  }
+}

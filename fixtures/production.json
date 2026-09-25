@@ -1,0 +1,12 @@
+{
+  "name": "承压环缝焊接工艺 WPS-DEMO-18",
+  "values": {
+    "baseMetalGroup": "Fe-1-1",
+    "fillerMaterial": "ER50-6",
+    "thickness": 18,
+    "diameter": 60,
+    "heatInput": 1.9,
+    "position": ["1G"],
+    "mechanicalTests": ["tensile", "bend", "impact"]
+  }
+}

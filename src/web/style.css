@@ -1,0 +1,57 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif;
+  background: #0f141b;
+  color: #dfe6ee;
+}
+header {
+  padding: 20px 28px 12px;
+  border-bottom: 1px solid #26303c;
+  background: linear-gradient(90deg, #14202e, #0f141b);
+}
+h1 { margin: 0; font-size: 26px; letter-spacing: 2px; }
+.sub { margin: 4px 0 0; color: #8fa1b5; font-size: 13px; }
+main { padding: 16px 28px 48px; display: flex; flex-direction: column; gap: 16px; }
+.panel {
+  background: #161d27;
+  border: 1px solid #26303c;
+  border-radius: 10px;
+  padding: 14px 18px;
+}
+.panel h2 { margin: 0 0 10px; font-size: 16px; color: #9fc3e8; }
+.form-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px 16px; }
+.form-grid label, .toolbar label { display: flex; flex-direction: column; font-size: 12px; color: #8fa1b5; gap: 3px; }
+input, select {
+  background: #0f141b; color: #dfe6ee; border: 1px solid #33404f;
+  border-radius: 6px; padding: 5px 8px; font-size: 13px;
+}
+.toolbar { display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end; margin-top: 12px; }
+button {
+  background: #1f6feb; color: #fff; border: none; border-radius: 6px;
+  padding: 7px 14px; font-size: 13px; cursor: pointer;
+}
+button:hover { background: #2b7fff; }
+button.danger { background: #8c2f39; }
+button.danger:hover { background: #a83a45; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th, td { text-align: left; padding: 7px 9px; border-bottom: 1px solid #26303c; vertical-align: top; }
+th { color: #8fa1b5; font-weight: 600; }
+.badge {
+  display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 12px; font-weight: 600;
+}
+.badge.ok { background: #14351f; color: #5bd88a; border: 1px solid #2a5a3a; }
+.badge.bad { background: #3d1a1e; color: #ff8a94; border: 1px solid #6b2b32; }
+.badge.warn { background: #3a2f14; color: #f0c66b; border: 1px solid #6b5a2b; }
+.mono { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 12px; }
+.evidence { color: #7fd6a0; }
+.gap { color: #ff9aa4; }
+.nearest { color: #f0c66b; }
+.muted { color: #8fa1b5; }
+#conclusion { font-size: 14px; line-height: 1.8; }
+#conclusion .big { font-size: 18px; font-weight: 700; }
+canvas { width: 100%; max-width: 1100px; background: #0f141b; border: 1px solid #26303c; border-radius: 8px; }
+.hint { color: #8fa1b5; font-size: 12px; }
+ul { margin: 0; padding-left: 18px; }
+li { margin: 4px 0; font-size: 13px; }
+.group-card { border: 1px solid #33404f; border-radius: 8px; padding: 10px 12px; margin: 8px 0; font-size: 13px; }
